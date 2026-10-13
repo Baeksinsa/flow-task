@@ -1,0 +1,337 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", "Noto Sans KR", sans-serif;
+  background: #f5f6f8;
+  color: #222;
+}
+
+.container {
+  max-width: 640px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+h1 {
+  margin-bottom: 24px;
+}
+
+h2 {
+  font-size: 1.1rem;
+  margin-top: 32px;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+/* 등록 폼 */
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-row {
+  display: flex;
+  gap: 8px;
+}
+
+.task-form input[type="text"] {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.task-form input[type="text"]:focus {
+  outline: 2px solid #3b82f6;
+  border-color: transparent;
+}
+
+.task-form button {
+  padding: 10px 18px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #3b82f6;
+  color: #fff;
+  cursor: pointer;
+}
+
+.task-form button:hover {
+  background: #2563eb;
+}
+
+.form-options {
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.form-options label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-options select,
+.form-options input,
+.filter-bar input,
+.filter-bar select,
+.edit-form input,
+.edit-form select,
+.edit-form textarea {
+  padding: 5px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.task-form input:disabled,
+.task-form select:disabled,
+.task-form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.form-error {
+  min-height: 1.4em;
+  margin: 8px 0 0;
+  color: #dc2626;
+  font-size: 0.9rem;
+}
+
+.server-error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  margin: 0 0 16px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  color: #b91c1c;
+  font-size: 0.9rem;
+}
+
+.server-error[hidden] {
+  display: none;
+}
+
+.server-error button {
+  flex-shrink: 0;
+  padding: 4px 12px;
+  border: 1px solid #fca5a5;
+  border-radius: 4px;
+  background: #fff;
+  color: #b91c1c;
+  cursor: pointer;
+}
+
+.task-actions select:disabled,
+.task-actions button:disabled,
+.edit-buttons button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+/* 검색·필터 */
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.filter-search {
+  flex: 1;
+  min-width: 160px;
+}
+
+.filter-search input {
+  width: 100%;
+}
+
+/* 목록 */
+
+.task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.task-item {
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  overflow-wrap: anywhere;
+}
+
+.task-item:not(.editing) {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.task-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.task-item[data-status="DONE"] .task-title {
+  color: #9ca3af;
+  text-decoration: line-through;
+}
+
+.task-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.badge {
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.priority-high {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.priority-normal {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.priority-low {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.overdue {
+  background: #dc2626;
+  color: #fff;
+}
+
+.task-description {
+  margin: 8px 0 0;
+  font-size: 0.9rem;
+  color: #4b5563;
+  white-space: pre-wrap;
+}
+
+.task-actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: 6px;
+}
+
+.task-actions button,
+.task-actions select,
+.edit-buttons button {
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.task-actions button[data-action="delete"] {
+  color: #dc2626;
+}
+
+/* 수정 폼 */
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.edit-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.85rem;
+  color: #4b5563;
+}
+
+.edit-form input[name="title"],
+.edit-form textarea {
+  width: 100%;
+  font-size: 1rem;
+  color: #222;
+}
+
+.edit-form textarea {
+  resize: vertical;
+}
+
+.edit-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.edit-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.edit-buttons button[type="submit"] {
+  border-color: #3b82f6;
+  background: #3b82f6;
+  color: #fff;
+}
+
+.task-item .form-error:empty {
+  display: none;
+}
+
+.empty-message {
+  color: #6b7280;
+}
+
+.empty-message[hidden] {
+  display: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .task-item:not(.editing) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

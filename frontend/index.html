@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Flow</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Task Flow</h1>
+    <div id="server-error" class="server-error" role="alert" hidden>
+      <span id="server-error-message"></span>
+      <button id="retry-button" type="button">다시 시도</button>
+    </div>
+
+    <form id="task-form" class="task-form" novalidate>
+      <div class="form-row">
+        <label for="task-title" class="visually-hidden">할 일 제목</label>
+        <input
+          id="task-title"
+          name="title"
+          type="text"
+          maxlength="100"
+          placeholder="할 일을 입력하세요 (1~100자)"
+          autocomplete="off"
+        >
+        <button type="submit">등록</button>
+      </div>
+      <div class="form-row form-options">
+        <label>
+          우선순위
+          <select id="task-priority" name="priority">
+            <option value="HIGH">높음</option>
+            <option value="NORMAL" selected>보통</option>
+            <option value="LOW">낮음</option>
+          </select>
+        </label>
+        <label>
+          마감일
+          <input id="task-due-date" name="due_date" type="date">
+        </label>
+      </div>
+    </form>
+    <p id="form-error" class="form-error" role="alert"></p>
+
+    <section aria-labelledby="list-heading">
+      <h2 id="list-heading">할 일 목록 <span id="task-count">(0)</span></h2>
+
+      <div class="filter-bar" role="search">
+        <label class="filter-search">
+          <span class="visually-hidden">제목 검색</span>
+          <input id="filter-query" type="search" placeholder="제목 검색" autocomplete="off">
+        </label>
+        <label>
+          <span class="visually-hidden">상태 필터</span>
+          <select id="filter-status">
+            <option value="">모든 상태</option>
+            <option value="TODO">할 일</option>
+            <option value="DOING">진행 중</option>
+            <option value="DONE">완료</option>
+          </select>
+        </label>
+        <label>
+          <span class="visually-hidden">우선순위 필터</span>
+          <select id="filter-priority">
+            <option value="">모든 우선순위</option>
+            <option value="HIGH">높음</option>
+            <option value="NORMAL">보통</option>
+            <option value="LOW">낮음</option>
+          </select>
+        </label>
+      </div>
+
+      <p id="empty-message" class="empty-message">등록된 할 일이 없습니다.</p>
+      <ul id="task-list" class="task-list"></ul>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

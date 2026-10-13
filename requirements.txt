@@ -1,0 +1,8 @@
+# API 서버 (3장부터 사용)
+fastapi==0.143.0
+uvicorn==0.54.0
+
+# DB 연결 (4장부터 사용)
+SQLAlchemy==2.1.4      # 테이블 정의와 DB 연결
+PyMySQL==1.2.3         # MariaDB 접속 드라이버
+python-dotenv==1.2.4   # .env 파일 읽기

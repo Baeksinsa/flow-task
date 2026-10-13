@@ -1,0 +1,7 @@
+# Python 가상환경과 캐시
+.venv/
+__pycache__/
+*.pyc
+
+# 비밀 값이 들어가는 환경변수 파일 (.env.example만 커밋한다)
+.env
